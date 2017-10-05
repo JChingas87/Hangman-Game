@@ -1,0 +1,62 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url("file:///Users/JChingas87/Desktop/Bootcamp/homework/homework3/Hangman-Game/assets/images/karate.jpg");
+}
+
+#container {
+    width: 1280px;
+}
+
+.game-box {
+    margin: 100px 600px 0px 100px;
+    border: double black;
+    width: 500px;
+    height: 550px;
+}
+
+.martial-arts {
+    font-family: 'Kaushan Script', 'cursive';
+    font-size: 50px;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.game-details {
+    font-family: 'Kaushan Script', 'cursive';
+    font-size: 20px;
+    text-align: center;
+}
+
+.hangman {
+    text-decoration: underline;
+    padding-bottom: 5px;
+}
+
+.game-details {
+    margin-top: 50px;
+}
+
+.press {
+    margin-top: 20px;
+}
+
+.wins {
+    margin-top: 80px;
+}
+
+.current {
+    margin-top: 50px;
+    font-size: 25px;
+    text-decoration: underline;
+}
+
+.number {
+    margin-top: 70px;
+}
+
+.letters {
+    margin-top: 50px;
+}
