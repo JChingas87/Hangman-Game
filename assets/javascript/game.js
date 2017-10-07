@@ -1,76 +1,75 @@
-//
-//
-//
-var gamewords = ["football", "creative", "universe", "theory", "karate", "program", "stoic", "meditate", "guitar", "katana", "fitness", "driving", "planning", "finance", "reading", "discipline", "hiking", "forest", "wisdom", "courage"];
+var gamewords = ["software", "crate", "basket", "theory", "court", "pirate", "stoic", "mate", "guitar", "chord", "fighter", "drive", "planter", "fourth", "reading", "dare", "hike", "forest", "wisdom", "courage"];
+var randomwords = Math.floor(Math.random() * gamewords.length);
+var chosenWord = gamewords[randomwords];
+var correctWord = [];
+var correctGuess = [];
+var underLine = [];
 var wins = 0;
 var remainingguesses = 10;
-var randomwords = gamewords[Math.floor(Math.random() * gamewords.length)];
-console.log(randomwords)
-var chosenWord = randomwords;
-var correctWord = "";
+
+console.log(chosenWord);
+
+var underLineId = document.getElementsByClassName("underline");
+var correctGuessId = document.getElementsByClassName("correctGuess");
+
+var underlineGenerator = () => {
+    for (var i = 0; i < chosenWord.length; i++) {
+        underLine.push("_");
+    }
+    return underLine;
+
+};
+console.log(underlineGenerator());
 
 
-document.onkeyup = function(event) {
+document.addEventListener("keypress", (event) => {
+
 
 
     var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
 
-    function myFunction() {
-        var str = document.getElementById("current-word").innerHTML;
-        var res = str.replace("current-word", userGuess);
-        document.getElementById("current-word").innerHTML = res;
+    if (chosenWord.includes(userGuess)) {
+        correctGuess.push(userGuess);
+        underLine[chosenWord.indexOf(userGuess)] = userGuess;
+
+        underLineId[0].innerHTML = underLine.join("");
+
+        remainingguesses--;
+        var guesses = userGuess;
+        guesses = document.getElementById("guesses");
+        guesses.innerHTML = remainingguesses;
+
+        var letters = userGuess;
+        letters = document.getElementById("letters");
+        letters.innerHTML += userGuess + ", ";;
 
 
-
-        if ((userGuess) == (chosenWord.charAt(0)) || ((userGuess) == (chosenWord.charAt(1, 9))) || ((userGuess) == (chosenWord.charAt(2))) || ((userGuess) == (chosenWord.charAt(3))) || ((userGuess) == (chosenWord.charAt(4))) || ((userGuess) == (chosenWord.charAt(5))) || ((userGuess) == (chosenWord.charAt(6))) || ((userGuess) == (chosenWord.charAt(7))) || ((userGuess) == (chosenWord.charAt(8))) || ((userGuess) == (chosenWord.charAt(9)))) {
+        if (underLine.join("") === chosenWord) {
             wins++;
-            remainingguesses--;
-            var guesses = userGuess;
-            guesses = document.getElementById("guesses");
-            guesses.innerHTML = remainingguesses;
-
-            var letters = userGuess;
-            letters = document.getElementById("letters");
-            letters.innerHTML += userGuess + ", ";;
-
-        } else {
-            remainingguesses--;
-            var letters = userGuess;
-            letters = document.getElementById("letters");
-            letters.innerHTML += userGuess + ", ";
-            var guesses = userGuess;
-            guesses = document.getElementById("guesses");
-            guesses.innerHTML = remainingguesses;
-
         }
 
-        function playerWins() {}
-        if (("current-word") === (correctWord)) {
-            var userWins = wins;
-            userWins = document.getElementById("wins");
-            userWins.innerHTML = wins++;
+    } else {
+        remainingguesses--;
+        var letters = userGuess;
+        letters = document.getElementById("letters");
+        letters.innerHTML += userGuess + ", ";
+        var guesses = userGuess;
+        guesses = document.getElementById("guesses");
+        guesses.innerHTML = remainingguesses;
+
+    }
+    var htmlWins =
+
+        "<p>Wins: " + wins + "</p>";
+
+    document.querySelector(".wins").innerHTML = htmlWins;
+
+    function resetGame() {
+        if (remainingguesses === 0) {
+            remainingguesses = 16;
+            letters = "";
+            return randomwords;
         }
     }
-    myFunction();
-}
-
-// window.location.reload(false);
-function resetgame() {
-    return gamewords;
-    return randomwords;
-
-    if (remainingguesses === 0) {
-        console.log("You lost")
-
-        chosenWord = randomwords;
-    }
-
-}
-
-// function get_random_word () {
-//     return array_for_randompull[randomizer];
-// }
-// if (missed_guesses == 0){
-//     console.log("You fuckin lost")
-//     word_to_evaluate = get_random_word;
-// }
+    resetGame();
+});
